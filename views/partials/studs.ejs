@@ -1,11 +1,9 @@
-<div class="w-screen h-full pl-80 bg-amber-100 font-normal flex flex-row flex-wrap">
+<div class="w-screen h-full pl-80 bg-amber-200 font-normal flex flex-row flex-wrap">
     <!-- <div class="ml-20"> -->
-         <% for(var index=0; index < itemData.length-5; index++){ %>    
-            <div class="w-60 max-w-sm border border-black bg-gray-50 rounded-lg shadow-md mr-2.5 my-2.5">
+         <% for(var index=10; index < itemData.length; index++){ %>    
+            <div class="w-60 max-w-sm border border-black bg-gray-50 rounded-lg shadow-md mr-2.5 my-4">
                 <a href="/item/<%= itemData[index].id %>">
-
                     <img class="rounded-t-lg" src="<%= itemData[index].data()['photourl1'] %>" alt="product image">
-    
                 </a>
 
                 <!-- div that stores name, price, view product button -->
