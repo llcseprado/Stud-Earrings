@@ -3,8 +3,9 @@
     <%- include('./partials/header') %>
 <body class="overflow-x-hidden bg-amber-100">
     <%- include('./partials/navbar') %>
+
     <div class="flex flex-row w-full h-full pt-28">
-        <button>Back</button>
+        
         <div class="basis-3/5 flex flex-row flex-wrap pl-24">
             <% for(var index=0; index < 3; index++){ %>
             <div class="w-80 h-80 border border-black bg-gray-50 rounded-lg shadow-md mr-2.5 mb-2.5">
@@ -13,27 +14,38 @@
             <% } %>
         </div>
         <div class="basis-2/5 mr-12">
-             <p class="text-5xl font-heading_2 font-bold"><%=itemData['name'] %></p>
-             <p class=" mt-8 text-4xl font-heading_2">Php <%= parseFloat(itemData['price']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,' ) %></p>
-             <p class="mt-8 font-normal font-bold ">CARE</p>
-             <p class="mt-4 text-sm font-normal text-justify"><%= itemData['description'] %></p>
-             <div></div>
-             <!-- <div class="mt-8"> -->
-                <table  class="mt-8 w-full">
-                    <tr class="border  border-amber-900 text-center">
-                      <th scope="col" class="py-3 px-6">#</th>
-                      <th scope="col" class="py-3 px-6">Timestamp</th>
-                      <th scope="col" class="py-3 px-6">Quantity</th>
-                    </tr>
-                    <tr class="border border-amber-900 text-center">
-                      <td scope="col" class="py-3 px-6">1</td>
-                      <td scope="col" class="py-3 px-6">Maria Anders</td>
-                      <td scope="col" class="py-3 px-6">2</td>
-                    </tr>
-                  </table>
-             <!-- </div> -->
+             <p class="text-5xl font-normal font-bold"><%=itemData['name'] %></p>
+             <p class=" mt-8 text-4xl font-normal font-bold">Php <%= parseFloat(itemData['price']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,' ) %></p>
+             <p class="mt-8 text-2xl font-normal font-bold ">CARE</p>
+             <p class="mt-2 text-sm font-normal text-justify"><%= itemData['description'] %></p>
+             <div class="flex flex-row mt-8">
+                <form action="/item/:itemid" method="POST">
+                    <div class="mr-8">
+                        <label for="quantity" class="block mb-0.5 text-sm font-medium text-amber-900">Enter Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="rounded-lg bg-amber-50 border text-amber-900 focus:ring-amber-500 focus:border-amber-500 block flex-1 min-w-0 w-full text-sm border-amber-300 p-2.5" placeholder="number" required>
+                    </div>
+                    <button class="mt-5 rounded-lg bg-amber-700 text-amber-100 py-2 px-4">Buy Now</button>
+                </form>
+             
+
+             </div>
+        
+                    <table  class="mt-8 w-full">
+                        <tr class=" bg-amber-700 text-center text-amber-100">
+                        <th scope="col" class="py-3 px-6">#</th>
+                        <th scope="col" class="py-3 px-6">Timestamp</th>
+                        <th scope="col" class="py-3 px-6">Quantity</th>
+                        </tr>
+                        <tr class="text-center bg-amber-50">
+                        <td scope="col" class="py-3 px-6">buynow.incr</td>
+                        <td scope="col" class="py-3 px-6"> buynow.toime </td>
+                        <td scope="col" class="py-3 px-6"> buynow.quant </td>
+                        </tr>
+                    </table>
+            
         </div>
     </div>
     <%- include('./partials/footer') %>
+
 </body>
 </html>
