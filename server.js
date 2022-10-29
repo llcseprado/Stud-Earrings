@@ -87,25 +87,25 @@ app.get('/item/:itemid', async function (req, res) {
 
 app.post('/item/:itemid',  jsonParser, async (req,res) => {
     const quant = req.body;
-    const i = 1;
-    const timestamp = new Date();
-    const item_id = req.params.itemid;
-    const item_ref = itemsCol.doc(item_id);
-    const doc = await item_ref.get();
+    // const i = 1;
+    // const timestamp = new Date();
+    // const item_id = req.params.itemid;
+    // const item_ref = itemsCol.doc(item_id);
+    // const doc = await item_ref.get();
 
-    const assign_s ={
-        num: i++,
-        timestamp: timestamp,
-        quantity: quant
-    };
+//     const assign_s ={
+//         num: i++,
+//         timestamp: timestamp,
+//         quantity: quant
+//     };
     
-    const saless = await db.collection('items').doc(item_id).collection('sales').add({
-        number: add_sales.num.toString(),
-        date_time: add_sales.time.toString(),
-        quantity:add_sales.q
-    });
+//     const saless = await db.collection('items').doc(item_id).collection('sales').add({
+//         number: add_sales.num.toString(),
+//         date_time: add_sales.time.toString(),
+//         quantity:add_sales.q
+//     });
 
-res.redirect('/item/:itemid')
+// res.redirect('/item/:itemid')
 });
 
 
