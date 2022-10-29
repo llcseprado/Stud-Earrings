@@ -1,6 +1,13 @@
 var express =  require('express');
 var app = express();
-// var bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 app.use(express.static('assets'))
 
 const port= process.env.PORT || 3000;
@@ -8,9 +15,10 @@ app.listen(port,);
 
 
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({extended: true}));
+// app.use(express.urlencoded({extended: true}));
 
 var fs = require("firebase-admin");
+const { response } = require('express');
 let serviceAccount;
 if (process.env.GOOGLE_CREDENTIALS != null){
     serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS)
@@ -27,8 +35,6 @@ const db = fs.firestore();
 
 //instance of the 'items' collection
 const itemsCol = db.collection('items');
-var sales = db.itemsCol;
-
 
 // let i = 1;
 // const timestamp = new Date();
@@ -60,40 +66,47 @@ app.get('/', async function (req,res) {
 
 app.get('/item/:itemid', async function (req, res) {
     try {
-        // console.log(req.params.itemid);
-
+        console.log(req.params.itemid);
     } catch (e) {
     }
     const item_id = req.params.itemid;
     const item_ref = itemsCol.doc(item_id);
     const doc = await item_ref.get();
-    // if (!doc.exists) {
-    //     // console.log('No such document!');
-    // } else {
-    //     // console.log('Document data:', doc.data());
-    // }
-
-    // document.getElementById("add_quant").onclick = doFunction;
-    
-    let i = 1;
-    const timestamp = new Date();
-    // const assign_s ={
-//     num: i++,
-//     timestamp: timestamp,
-//     quantity: "hi"
-// };
+    if (!doc.exists) {
+        console.log('No such document!');
+    } else {
+        console.log('Document data:', doc.data());
+    }
 
     let data = {
         url: req.url,
-        itemData: doc.data()
-        // num: i++,
-        // timestamp: timestamp,
-        // quantity: "hi"
+        itemData: doc.data(),
     }
     res.render('item.ejs', data);
 });
 
-app.post('/item/:itemid', (req,res) => {
-    console.log(req.body.quantity);
+app.post('/item/:itemid',  jsonParser, async (req,res) => {
+    const quant = req.body;
+    const i = 1;
+    const timestamp = new Date();
+    const item_id = req.params.itemid;
+    const item_ref = itemsCol.doc(item_id);
+    const doc = await item_ref.get();
+
+    const assign_s ={
+        num: i++,
+        timestamp: timestamp,
+        quantity: quant
+    };
+    
+    const saless = await db.collection('items').doc(item_id).collection('sales').add({
+        number: add_sales.num.toString(),
+        date_time: add_sales.time.toString(),
+        quantity:add_sales.q
+    });
+
+res.redirect('/item/:itemid')
 });
+
+
 
