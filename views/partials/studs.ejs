@@ -1,28 +1,35 @@
-<div class="w-screen h-full pl-80 bg-amber-200 font-normal flex flex-row flex-wrap">
-    <!-- <div class="ml-20"> -->
-         <% for(var index=10; index < itemData.length; index++){ %>    
-            <div class="w-60 max-w-sm border border-black bg-gray-50 rounded-lg shadow-md mr-2.5 my-4 hover:border-4">
-                <a href="/item/<%= itemData[index].id %>">
-                    <img class="rounded-t-lg" src="<%= itemData[index].data()['photourl1'] %>" alt="product image">
-                
+<div class="w-screen h-full bg-amber-200 flex flex-col shadow-md">
+    <div class="self-center w-3/5 mb-8 py-7 border-y border-black flex flex-col">
+        <p class="self-center place-self-center  text-6xl font-bold font-heading_2">EARSCAPE SETS</p>
+    </div>
+    
 
-                <!-- div that stores name, price, view product button -->
-                <div class="px-5 pb-2.5">
+    <div class="px-10 pb-8 font-normal flex flex-row flex-wrap">
+        <!-- <div class="ml-20"> -->
+            <% for(var index=10; index < itemData.length; index++){ %>    
+                <div class="w-60 max-w-sm border border-black bg-gray-50 rounded-lg shadow-md mr-2.5 my-4 hover:border-4">
+                    <a href="/item/<%= itemData[index].id %>">
+                        <img class="rounded-t-lg" src="<%= itemData[index].data()['photourl1'] %>" alt="product image">
                     
-                        <h5 class="text-xl font-semibold tracking-tight text-gray-900">
-                            <%= itemData[index].data()['name'] %>
-                        </h5>
+
+                    <!-- div that stores name, price, view product button -->
+                    <div class="px-5 pb-2.5">
+                        
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900">
+                                <%= itemData[index].data()['name'] %>
+                            </h5>
+                        
                     
-                 
-                    <div class="flex justify-between items-center mt-4">
-                        <span class="text-lg font-bold text-gray-900">
-                            Php <%= parseFloat (itemData[index].data()['price']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %>
-                        </span>
-                        <!-- <a href="#" class="text-amber-200 bg-amber-700 hover:text-amber-50 focus:ring-4 focus:outline-none focus:ring-amber-900 font-medium rounded-lg text-sm px-1 py-1 text-center">View Product</a> -->
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-lg font-bold text-gray-900">
+                                Php <%= parseFloat (itemData[index].data()['price']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %>
+                            </span>
+                            <!-- <a href="#" class="text-amber-200 bg-amber-700 hover:text-amber-50 focus:ring-4 focus:outline-none focus:ring-amber-900 font-medium rounded-lg text-sm px-1 py-1 text-center">View Product</a> -->
+                        </div>
                     </div>
+                </a>
                 </div>
-            </a>
-            </div>
-        <% } %>
-    <!-- </div> -->
+            <% } %>
+        <!-- </div> -->
+    </div>
 </div>
